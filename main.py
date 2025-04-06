@@ -10,10 +10,10 @@ import time
 def run_smartstock_ai():
     print("Starting SmartStock AI Simulation...")
     
-    # Load datasets
-    demand_data = pd.read_csv("data\demand_forecasting.csv")
-    inventory_data = pd.read_csv("data\inventory_monitoring.csv")
-    pricing_data = pd.read_csv("data\pricing_optimization.csv")
+    # Load datasets with corrected paths
+    demand_data = pd.read_csv(r"data\demand_forecasting.csv")
+    inventory_data = pd.read_csv(r"data\inventory_monitoring.csv")
+    pricing_data = pd.read_csv(r"data\pricing_optimization.csv")
 
     # Initialize agents with data
     demand_agent = DemandAgent(demand_data)
