@@ -1,10 +1,10 @@
 # main.py
 import pandas as pd
-from demand_agent import DemandAgent
-from store_agent import StoreAgent
-from warehouse_agent import WarehouseAgent
-from supplier_agent import SupplierAgent
-from customer_agent import CustomerAgent
+from Smart_Stock_Ai.demand_agent import DemandAgent
+from Smart_Stock_Ai.store_agent import StoreAgent
+from Smart_Stock_Ai.warehouse_agent import WarehouseAgent
+from Smart_Stock_Ai.supplier_agent import SupplierAgent
+from Smart_Stock_Ai.customer_agent import CustomerAgent
 import time
 
 def run_smartstock_ai():
