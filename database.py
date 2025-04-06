@@ -8,7 +8,7 @@ class InventoryDB:
         self.cursor = self.conn.cursor()
         self.cursor.execute("CREATE TABLE inventory (product_id INTEGER, store_id INTEGER, stock REAL)")
         # Load initial data
-        inventory_data = pd.read_csv("Inventory Monitoring.csv")
+        inventory_data = pd.read_csv("data\inventory_monitoring.csv")
         for _, row in inventory_data.iterrows():
             self.cursor.execute("INSERT INTO inventory VALUES (?, ?, ?)",
                                (row["Product ID"], row["Store ID"], row["Stock Levels"]))
