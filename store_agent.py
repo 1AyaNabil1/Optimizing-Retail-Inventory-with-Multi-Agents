@@ -17,9 +17,14 @@ class StoreAgent:
             print("StoreAgent: Stock sufficient")
 
     def adjust_pricing(self, pricing_data, product_id):
-        product_pricing = pricing_data[pricing_data["Product ID"] == product_id].iloc[0]
-        if self.request == 0 and product_pricing["Sales Volume"] < 100:  # Slow-moving stock
-            new_price = product_pricing["Price"] * 0.9  # 10% discount
-            print(f"StoreAgent: Product {product_id} - Adjusted price to {new_price:.2f} due to slow sales")
-            pricing_data.loc[pricing_data["Product ID"] == product_id, "Price"] = new_price
+        # Check if product exists in pricing data
+        product_pricing = pricing_data[pricing_data["Product ID"] == product_id]
+        if not product_pricing.empty:
+            product_pricing = product_pricing.iloc[0]
+            if self.request == 0 and product_pricing["Sales Volume"] < 100:  # Slow-moving stock
+                new_price = product_pricing["Price"] * 0.9  # 10% discount
+                print(f"StoreAgent: Product {product_id} - Adjusted price to {new_price:.2f} due to slow sales")
+                pricing_data.loc[pricing_data["Product ID"] == product_id, "Price"] = new_price
+        else:
+            print(f"StoreAgent: Product {product_id} - No pricing data available, skipping adjustment")
         return pricing_data
