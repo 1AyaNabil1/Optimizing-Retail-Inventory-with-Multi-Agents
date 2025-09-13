@@ -148,6 +148,6 @@ Hackathon organizers for providing initial datasets and problem statements.
 
 Python open-source community for tools that made rapid prototyping possible.
 
-👋 For feedback or questions, contact ayanabil297@gmail.com
+For feedback or questions, contact ayanabil297@gmail.com
 
-Happy Hacking! 💻✨
+Happy Hacking!
