@@ -1,56 +1,56 @@
-# SmartStock AI – Multi-Agent Retail Inventory Optimization 🚀
+# SmartStock AI – Multi-Agent Retail Inventory Optimization
 
 ![Hackathon Banner](img/image.png)
 
-## Overview 📖
+## Overview
 **SmartStock AI** is a collaborative multi-agent system built to intelligently optimize retail inventory management. Designed during the **"Hack the Future: A Gen AI Sprint Powered by Data"** hackathon, it addresses critical retail challenges like stockouts, overstocking, and inefficient supply chains using intelligent agents and AI-driven forecasts.
 
 By combining real-time collaboration and predictive AI, SmartStock AI dynamically balances product availability and inventory costs across stores, warehouses, and suppliers—ensuring smarter, faster, and leaner operations.
 
 ---
 
-## ❗ Problem Statement
+## Problem Statement
 Retail businesses suffer from:
 
-- **Stockouts** – Lost revenue from empty shelves 😞
-- **Overstocking** – Excess inventory costs and space issues 💸
-- **Manual Processes** – Delayed forecasting and inefficient operations ⏳
+- **Stockouts** – Lost revenue from empty shelves 
+- **Overstocking** – Excess inventory costs and space issues 
+- **Manual Processes** – Delayed forecasting and inefficient operations 
 
 **Our Goal**: Build an AI-powered, multi-agent system that automates demand prediction, inventory management, and price adjustment to boost efficiency and cut operational costs.
 
 ---
 
-## 🌟 The SmartStock AI System
+## The SmartStock AI System
 
 The system is built around **five core agents**:
 
-1. **🧠 Demand Prediction Agent**  
+1. **Demand Prediction Agent**  
    Predicts future product demand using historical data, trends, and seasonality.
 
-2. **🏪 Store Agent**  
+2. **Store Agent**  
    Tracks real-time inventory, requests restocks, and adjusts prices for slow-moving items.
 
-3. **🏭 Warehouse Agent**  
+3. **Warehouse Agent**  
    Allocates stock across stores and triggers restock requests to suppliers.
 
-4. **🚚 Supplier Agent**  
+4. **Supplier Agent**  
    Coordinates product replenishment based on warehouse alerts and lead times.
 
-5. **🧑‍🤝‍🧑 Customer Agent**  
+5. **Customer Agent**  
    Learns customer preferences from anonymized data to refine predictions and promotions.
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-- 🔁 **Proactive Restocking**: Anticipates needs before critical levels hit.  
-- 📉 **Cost Optimization**: Reduces overstocking through AI-aligned forecasting.  
-- 🏷️ **Dynamic Pricing**: Adapts pricing in real-time based on product demand and turnover.  
-- ⚡ **Real-Time Coordination**: Seamless communication among agents using shared state.
+- **Proactive Restocking**: Anticipates needs before critical levels hit.  
+- **Cost Optimization**: Reduces overstocking through AI-aligned forecasting.  
+- **Dynamic Pricing**: Adapts pricing in real-time based on product demand and turnover.  
+- **Real-Time Coordination**: Seamless communication among agents using shared state.
 
 ---
 
-## 📂 Dataset Overview
+## Dataset Overview
 
 Located in the `data/` directory:
 
@@ -62,12 +62,12 @@ Located in the `data/` directory:
 
 ---
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
-- Python 3.13 🐍
+- Python 3.13 
 - Install dependencies: ```bash
-pip install pandas ```  📦
+pip install pandas ```  
 
 ### Folder Structure:
 ```bash
@@ -86,7 +86,7 @@ SmartStockAI/
 └── README.md
 ```
 ---
-## ▶️ How to Run
+## How to Run
 **1. Run the Simulation**
 ```bash
 python main.py
@@ -100,14 +100,14 @@ python database.py
 Demonstrates inventory updates using a local SQLite simulation.
 
 ---
-## 📌 Code Components
+## Code Components
 - `main.py`: Controls simulation loop and orchestrates agent logic.
 
 * `demand_agent.py`: Contains logic for each specific agent.
 
 * `database.py`: Simulates real-time inventory updates in SQLite.
 ---
-## ⚙️ Technical Stack
+## Technical Stack
 * **Language**: Python
 
 * **Data Handling**: pandas
@@ -116,14 +116,14 @@ Demonstrates inventory updates using a local SQLite simulation.
 
 * **AI Models**: Simple trend forecasting (extendable to LSTM or Ollama LLM)
 ---
-## 📊 Expected Impact
-* 📈 **Sales Boost**: 15–20% increase by preventing stockouts
+## Expected Impact
+* **Sales Boost**: 15–20% increase by preventing stockouts
 
-* 💰 **Cost Savings**: 10–15% reduction in holding costs
+* **Cost Savings**: 10–15% reduction in holding costs
 
-* 🔄 **Efficiency Gains**: 25% improvement in supply chain response time
+* **Efficiency Gains**: 25% improvement in supply chain response time
 ---
-## 🚀 Future Enhancements
+## Future Enhancements
 * Real-world data ingestion from APIs and POS systems
 
 * Advanced AI (e.g., LSTM, Ollama, Graph Neural Nets)
@@ -132,7 +132,7 @@ Demonstrates inventory updates using a local SQLite simulation.
 
 * Web-based UI dashboard for live tracking (under maintanence)
 ---
-## 🎯 Hackathon Context
+## Hackathon Context
 * **Team**: AyaNeXus (Solo Participant: Aya Nabil)
 
 * **Project Name**: SmartStock AI
@@ -143,7 +143,7 @@ Demonstrates inventory updates using a local SQLite simulation.
 
 * **Event**: Hack the Future: A Gen AI Sprint Powered by Data
 ---
-## 🙌 Acknowledgments
+## Acknowledgments
 Hackathon organizers for providing initial datasets and problem statements.
 
 Python open-source community for tools that made rapid prototyping possible.
