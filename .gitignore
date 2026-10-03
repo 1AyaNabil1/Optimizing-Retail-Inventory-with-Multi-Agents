@@ -1,0 +1,15 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local environments
+.venv/
+venv/
+.env
+
+# Simulation outputs written locally
+outputs/
+*.sqlite
+*.db
