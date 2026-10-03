@@ -296,7 +296,8 @@ def main(argv=None):
     summary = result.summary
     total_demand = int(summary["demand"].sum())
     total_sold = int(summary["sold"].sum())
-    print(f"Summary after {config.steps} steps (seed={config.seed}):")
+    steps_label = "step" if config.steps == 1 else "steps"
+    print(f"Summary after {config.steps} {steps_label} (seed={config.seed}):")
     print(summary.to_string(index=False))
     if total_demand:
         print(
