@@ -119,9 +119,9 @@ You can also run the simulation from Python:
 from Smart_Stock_Ai.main import SimulationConfig, run_smartstock_ai
 
 result = run_smartstock_ai(SimulationConfig(steps=10, num_products=5, seed=7))
-result.summary   # one row per product (pandas DataFrame)
-result.history   # one row per step and product
-result.pricing   # pricing table after discounts (the input data is not modified)
+result.summary  # one row per product (pandas DataFrame)
+result.history  # one row per step and product
+result.pricing  # pricing table after discounts (the input data is not modified)
 ```
 
 ---

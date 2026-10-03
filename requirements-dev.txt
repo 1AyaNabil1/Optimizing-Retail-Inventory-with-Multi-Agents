@@ -1,3 +1,4 @@
 -r requirements.txt
 pytest>=8
-ruff>=0.6
+# Pinned so a new ruff release cannot change lint/format results under CI.
+ruff==0.16.10
