@@ -24,5 +24,7 @@ class DemandAgent:
         product_data = first_row(self.demand_data, product_id, "demand")
         trend = TREND_MULTIPLIERS.get(product_data["Demand Trend"], 1.0)
         predicted_demand = round(float(product_data["Sales Quantity"]) * trend)
-        logger.info(f"DemandAgent: Product {product_id} - Predicted demand = {predicted_demand} units")
+        logger.info(
+            f"DemandAgent: Product {product_id} - Predicted demand = {predicted_demand} units"
+        )
         return predicted_demand

@@ -166,9 +166,7 @@ def run_smartstock_ai(config=None, datasets=None):
     products = select_products(
         datasets.demand, datasets.inventory, config.num_products, config.product_ids
     )
-    initial_stock = {
-        p: (store_agent.get_stock(p), warehouse_agent.get_stock(p)) for p in products
-    }
+    initial_stock = {p: (store_agent.get_stock(p), warehouse_agent.get_stock(p)) for p in products}
     delivered_total = dict.fromkeys(products, 0)
     sold_total = dict.fromkeys(products, 0)
     records = []
@@ -250,7 +248,8 @@ def build_parser():
         help="std-dev of actual demand as a fraction of the forecast (0 = demand equals forecast)",
     )
     parser.add_argument(
-        "--data-dir", help=f"folder with the CSVs (default: ${DATA_DIR_ENV_VAR} or the repo's data/)"
+        "--data-dir",
+        help=f"folder with the CSVs (default: ${DATA_DIR_ENV_VAR} or the repo's data/)",
     )
     parser.add_argument(
         "--delay", type=float, default=defaults.delay, help="seconds to pause between steps"
@@ -263,7 +262,10 @@ def build_parser():
         help="agent log verbosity (logs go to stderr)",
     )
     parser.add_argument(
-        "-q", "--quiet", action="store_true", help="only print the summary (same as --log-level WARNING)"
+        "-q",
+        "--quiet",
+        action="store_true",
+        help="only print the summary (same as --log-level WARNING)",
     )
     return parser
 
