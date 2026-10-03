@@ -1,14 +1,17 @@
 # database.py
 import sqlite3
-import pandas as pd
+
+from Smart_Stock_Ai.data import INVENTORY_FILE, read_dataset, resolve_data_dir
 
 class InventoryDB:
-    def __init__(self):
+    def __init__(self, csv_path=None):
         self.conn = sqlite3.connect(":memory:")  # In-memory DB
         self.cursor = self.conn.cursor()
         self.cursor.execute("CREATE TABLE inventory (product_id INTEGER, store_id INTEGER, stock REAL)")
-        # Load initial data
-        inventory_data = pd.read_csv("data\inventory_monitoring.csv")
+        # Load initial data (portable path; defaults to data/inventory_monitoring.csv)
+        if csv_path is None:
+            csv_path = resolve_data_dir() / INVENTORY_FILE
+        inventory_data = read_dataset(csv_path)
         for _, row in inventory_data.iterrows():
             self.cursor.execute("INSERT INTO inventory VALUES (?, ?, ?)",
                                (row["Product ID"], row["Store ID"], row["Stock Levels"]))

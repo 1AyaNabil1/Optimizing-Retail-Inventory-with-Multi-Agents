@@ -1,5 +1,5 @@
 # main.py
-import pandas as pd
+from Smart_Stock_Ai.data import load_datasets
 from Smart_Stock_Ai.demand_agent import DemandAgent
 from Smart_Stock_Ai.store_agent import StoreAgent
 from Smart_Stock_Ai.warehouse_agent import WarehouseAgent
@@ -10,10 +10,13 @@ import time
 def run_smartstock_ai():
     print("Starting SmartStock AI Simulation...")
     
-    # Load datasets with corrected paths
-    demand_data = pd.read_csv(r"data\demand_forecasting.csv")
-    inventory_data = pd.read_csv(r"data\inventory_monitoring.csv")
-    pricing_data = pd.read_csv(r"data\pricing_optimization.csv")
+    # Load datasets from data/ (or $SMARTSTOCK_DATA_DIR) using
+    # portable paths; the old Windows-style "data\\..." strings failed on
+    # macOS and Linux.
+    datasets = load_datasets()
+    demand_data = datasets.demand
+    inventory_data = datasets.inventory
+    pricing_data = datasets.pricing
 
     # Initialize agents with data
     demand_agent = DemandAgent(demand_data)
