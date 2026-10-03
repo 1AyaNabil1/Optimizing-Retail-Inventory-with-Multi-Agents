@@ -54,7 +54,7 @@ def read_dataset(path: str | os.PathLike[str]) -> pd.DataFrame:
     path = Path(path)
     if not path.is_file():
         raise FileNotFoundError(
-            f"Dataset not found: {path}. Set {DATA_DIR_ENV_VAR} to the folder holding the CSVs."
+            f"Dataset not found: {path}. Pass --data-dir or set {DATA_DIR_ENV_VAR}."
         )
     # keep_default_na=False keeps literal category values such as "None"
     # (used in 'Seasonality Factors') instead of turning them into NaN.
