@@ -18,11 +18,14 @@ class InventoryDB:
         if csv_path is None:
             csv_path = resolve_data_dir() / INVENTORY_FILE
         inventory_data = read_dataset(csv_path)
-        for _, row in inventory_data.iterrows():
-            self.cursor.execute(
-                "INSERT INTO inventory VALUES (?, ?, ?)",
-                (row["Product ID"], row["Store ID"], row["Stock Levels"]),
-            )
+        # Convert to built-in types: sqlite3 stores numpy.int64 values as BLOBs,
+        # which then never match an integer in WHERE clauses.
+        columns = inventory_data[["Product ID", "Store ID", "Stock Levels"]]
+        rows = [
+            (int(product_id), int(store_id), float(stock))
+            for product_id, store_id, stock in columns.itertuples(index=False)
+        ]
+        self.cursor.executemany("INSERT INTO inventory VALUES (?, ?, ?)", rows)
         self.conn.commit()
 
     def update_stock(self, product_id, store_id, stock):
