@@ -31,12 +31,17 @@ def run_smartstock_ai():
 
     # Simulate 3 time steps
     for step in range(3):
-        product_id = demand_data.iloc[step]["Product ID"]  # Pick a product
+        product_id = int(demand_data.iloc[step]["Product ID"])  # Pick a product
         demand = demand_agent.predict_demand(product_id)
-        store_agent.check_stock(product_id, demand)
-        warehouse_agent.handle_request(product_id, store_agent.request)
-        supplier_agent.restock(warehouse_agent.needs_restock)
+        # Units now actually move: warehouse -> store, supplier -> warehouse,
+        # store -> customers.
+        request = store_agent.check_stock(product_id, demand)
+        shipped = warehouse_agent.handle_request(product_id, request)
+        store_agent.receive(product_id, shipped)
+        delivered = supplier_agent.restock(warehouse_agent.needs_restock, product_id)
+        warehouse_agent.receive(product_id, delivered)
         customer_agent.update_behavior(product_id)
+        store_agent.sell(product_id, demand)
         pricing_data = store_agent.adjust_pricing(pricing_data, product_id)
         time.sleep(1)  # Pause for readability
         logger.info(f"--- Time Step {step + 1} Complete ---")

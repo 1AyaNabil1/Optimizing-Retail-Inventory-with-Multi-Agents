@@ -73,3 +73,17 @@ def load_datasets(data_dir: str | os.PathLike[str] | None = None) -> Datasets:
         inventory=read_dataset(root / INVENTORY_FILE),
         pricing=read_dataset(root / PRICING_FILE),
     )
+
+
+def first_row(frame: pd.DataFrame, product_id: int, dataset: str) -> pd.Series:
+    """Return the first record for ``product_id``.
+
+    The CSVs can hold several rows per product (different stores or dates);
+    the prototype uses the first one. Raises ``KeyError`` with a readable
+    message instead of the bare ``IndexError`` that ``.iloc[0]`` gives on an
+    empty selection.
+    """
+    matches = frame[frame["Product ID"] == product_id]
+    if matches.empty:
+        raise KeyError(f"Product {product_id} not found in {dataset} data")
+    return matches.iloc[0]
