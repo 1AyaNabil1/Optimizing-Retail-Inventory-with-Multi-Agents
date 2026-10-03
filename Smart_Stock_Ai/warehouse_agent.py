@@ -1,4 +1,8 @@
 # warehouse_agent.py
+import logging
+
+logger = logging.getLogger(__name__)
+
 class WarehouseAgent:
     def __init__(self, inventory_data):
         self.inventory_data = inventory_data
@@ -12,7 +16,7 @@ class WarehouseAgent:
             product_data = self.inventory_data[self.inventory_data["Product ID"] == product_id].iloc[0]
             warehouse_stock = product_data["Warehouse Capacity"]  # Using capacity as stock proxy
             if warehouse_stock >= request:
-                print(f"WarehouseAgent: Product {product_id} - Sent {request:.2f} units to Store")
+                logger.info(f"WarehouseAgent: Product {product_id} - Sent {request:.2f} units to Store")
             else:
                 self.needs_restock = request - warehouse_stock
-                print(f"WarehouseAgent: Product {product_id} - Low stock! Need {self.needs_restock:.2f} units from Supplier")
+                logger.info(f"WarehouseAgent: Product {product_id} - Low stock! Need {self.needs_restock:.2f} units from Supplier")

@@ -1,7 +1,11 @@
 # database.py
+import logging
 import sqlite3
 
 from Smart_Stock_Ai.data import INVENTORY_FILE, read_dataset, resolve_data_dir
+
+logger = logging.getLogger(__name__)
+
 
 class InventoryDB:
     def __init__(self, csv_path=None):
@@ -21,7 +25,7 @@ class InventoryDB:
         self.cursor.execute("UPDATE inventory SET stock = ? WHERE product_id = ? AND store_id = ?",
                            (stock, product_id, store_id))
         self.conn.commit()
-        print(f"Database: Updated Product {product_id} at Store {store_id} to stock = {stock}")
+        logger.info(f"Database: Updated Product {product_id} at Store {store_id} to stock = {stock}")
 
     def get_stock(self, product_id, store_id):
         self.cursor.execute("SELECT stock FROM inventory WHERE product_id = ? AND store_id = ?",
@@ -31,6 +35,7 @@ class InventoryDB:
 
 # Demo usage
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     db = InventoryDB()
-    print(f"Initial stock for Product 9286 at Store 16: {db.get_stock(9286, 16)}")
+    logger.info(f"Initial stock for Product 9286 at Store 16: {db.get_stock(9286, 16)}")
     db.update_stock(9286, 16, 750)

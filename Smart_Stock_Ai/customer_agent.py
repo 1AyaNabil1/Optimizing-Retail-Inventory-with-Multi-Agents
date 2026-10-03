@@ -1,4 +1,8 @@
 # customer_agent.py
+import logging
+
+logger = logging.getLogger(__name__)
+
 class CustomerAgent:
     def __init__(self, demand_data):
         self.demand_data = demand_data
@@ -7,4 +11,4 @@ class CustomerAgent:
         product_data = self.demand_data[self.demand_data["Product ID"] == product_id].iloc[0]
         segment = product_data["Customer Segments"]
         trend = product_data["Demand Trend"]
-        print(f"CustomerAgent: Product {product_id} - Segment = {segment}, Trend = {trend}")
+        logger.info(f"CustomerAgent: Product {product_id} - Segment = {segment}, Trend = {trend}")

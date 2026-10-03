@@ -1,4 +1,5 @@
 # main.py
+import logging
 from Smart_Stock_Ai.data import load_datasets
 from Smart_Stock_Ai.demand_agent import DemandAgent
 from Smart_Stock_Ai.store_agent import StoreAgent
@@ -7,8 +8,11 @@ from Smart_Stock_Ai.supplier_agent import SupplierAgent
 from Smart_Stock_Ai.customer_agent import CustomerAgent
 import time
 
+logger = logging.getLogger(__name__)
+
+
 def run_smartstock_ai():
-    print("Starting SmartStock AI Simulation...")
+    logger.info("Starting SmartStock AI Simulation...")
     
     # Load datasets from data/ (or $SMARTSTOCK_DATA_DIR) using
     # portable paths; the old Windows-style "data\\..." strings failed on
@@ -35,7 +39,8 @@ def run_smartstock_ai():
         customer_agent.update_behavior(product_id)
         pricing_data = store_agent.adjust_pricing(pricing_data, product_id)
         time.sleep(1)  # Pause for readability
-        print(f"--- Time Step {step + 1} Complete ---")
+        logger.info(f"--- Time Step {step + 1} Complete ---")
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     run_smartstock_ai()
