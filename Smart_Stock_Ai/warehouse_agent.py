@@ -5,6 +5,9 @@ class WarehouseAgent:
         self.needs_restock = 0
 
     def handle_request(self, product_id, request):
+        # Reset every call: a shortfall from an earlier request must not make the
+        # supplier restock again when this request is zero or fully served.
+        self.needs_restock = 0
         if request > 0:
             product_data = self.inventory_data[self.inventory_data["Product ID"] == product_id].iloc[0]
             warehouse_stock = product_data["Warehouse Capacity"]  # Using capacity as stock proxy

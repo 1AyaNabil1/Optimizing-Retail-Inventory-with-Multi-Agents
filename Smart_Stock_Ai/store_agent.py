@@ -3,6 +3,7 @@ class StoreAgent:
     def __init__(self, inventory_data):
         self.inventory_data = inventory_data
         self.request = 0
+        self.discounted_products = set()  # discount at most once per product per run
 
     def check_stock(self, product_id, demand):
         product_data = self.inventory_data[self.inventory_data["Product ID"] == product_id].iloc[0]
@@ -20,11 +21,16 @@ class StoreAgent:
         # Check if product exists in pricing data
         product_pricing = pricing_data[pricing_data["Product ID"] == product_id]
         if not product_pricing.empty:
+            row_index = product_pricing.index[0]
             product_pricing = product_pricing.iloc[0]
-            if self.request == 0 and product_pricing["Sales Volume"] < 100:  # Slow-moving stock
+            slow_moving = self.request == 0 and product_pricing["Sales Volume"] < 100
+            if slow_moving and product_id not in self.discounted_products:
                 new_price = product_pricing["Price"] * 0.9  # 10% discount
                 print(f"StoreAgent: Product {product_id} - Adjusted price to {new_price:.2f} due to slow sales")
-                pricing_data.loc[pricing_data["Product ID"] == product_id, "Price"] = new_price
+                # Update only the row the decision was based on; other stores'
+                # rows for the same product keep their own prices.
+                pricing_data.loc[row_index, "Price"] = new_price
+                self.discounted_products.add(product_id)
         else:
             print(f"StoreAgent: Product {product_id} - No pricing data available, skipping adjustment")
         return pricing_data
